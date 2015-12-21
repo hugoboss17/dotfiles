@@ -1,0 +1,42 @@
+usage: myhelp [<args>]
+
+These are the possible commands:
+
+gm="git checkout master"
+gmp="git checkout master && git pull"
+gdev="git checkout develop"
+gdevp="git checkout develop && git pull"
+
+gitflow:
+   gm         Checkout master
+   gmp        Checkout master and pull
+   gdev       Checkout develop
+   gdevp      Checkout develop and pull
+   gcf        Checkout feature and pull
+   gch        Checkout hotfix and pull
+   gff        Finish feature
+   gfh        Finish hotfix
+   gmakef     Create a feature from develop branch
+   gmakeh     Create a hotfix from master branch
+
+file shortcuts:
+   ga         Add a file or files
+   clone      Clone a repository into a new directory
+
+log shortcuts:
+   glog       Normal log with colors
+   glogs      Simple log with pretty format
+   glogd      Detailed log with pretty format
+
+others:
+   g          Git
+   gcl        Clones a repository
+   gs         Git status (also 'gst')
+   gst        Detailed log with pretty format
+   gpush      Push commits to remote branch
+   gpull      Pull from remote branch
+   gf         Fetch all
+   gmerge     Merge files (default: Kdiff3)
+   gsave      Stash current changes
+   gload      Load from stash
+   gcommit    Commit changes
