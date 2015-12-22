@@ -22,12 +22,13 @@ function clean_up() {
 	rm -rf ~/.local/share/Trash/*
 }
 
-# get space before cleaner
+# get used space before cleaner
 cur_space=$(df | awk '{if($3 != "Used" && $3 > 0)print $3}' | awk '{sum+=$1} END {print sum}')
 
+#clean up your system
 clean_up
 
-# get space after cleaner
+# get used space after cleaner
 after_space=$(df | awk '{if($3 != "Used" && $3 > 0)print $3}' | awk '{sum+=$1} END {print sum}')
 
 # get difference

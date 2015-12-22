@@ -2,18 +2,10 @@
 
 user=$(whoami)
 
-apt-packages=(
+packages=(
   gnome-tweak-tool
   fish
   guake
   htop
-  
-)
-
-wget-packages=(
-  ansible
-  build-essential
-  cowsay
-  git-core
-  htop
+  sublime
 )
