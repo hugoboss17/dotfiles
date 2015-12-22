@@ -1,22 +1,36 @@
 #!/bin/bash
 
 function bytes_for_humans() {
-	if [ $1 -eq 0 ]
+	if [ $1 -lt 1 ]
 	then
 		echo "System already cleaned"
 	else
-		echo $1 | awk '{ sum=$1 ; hum[1024**3]="Gb";hum[1024**2]="Mb";hum[1024]="Kb"; for (x=1024**3; x>=1024; x/=1024){ if (sum>=x) { printf "%.2f %s\n",sum/x,hum[x];break } }}'
+		if [ $1 -lt 1024 ]
+		then
+			type="KB"
+			arg=1
+		elif [ $1 -gt 1023 ] && [ $1 -lt 1048576 ] 
+		then
+			type="MB"
+			arg=1024
+		elif [ $1 -gt 1048575 ]
+		then
+			type="GB"
+			arg=$(expr 1024**2)
+		fi
+		total=$(awk "BEGIN{print $1 / $arg}")
+		echo "Total cleaned: $total $type"
 	fi
 }
 
 function clean_up() {
 	# packages cleaner
-	sudo apt-get clean
-	sudo apt-get autoclean
-	sudo apt-get autoremove -y
+	apt-get clean
+	apt-get autoclean
+	apt-get autoremove -y
 
 	# clean up or compress log files
-	#logrotate
+	logrotate --force /etc/logrotate.conf
 
 	# clean up trash
 	rm -rf ~/.local/share/Trash/*
@@ -33,8 +47,8 @@ after_space=$(df | awk '{if($3 != "Used" && $3 > 0)print $3}' | awk '{sum+=$1} E
 
 # get difference
 cleaned=$(expr $cur_space - $after_space)
-cleaned=$(expr $cleaned \* 1000)
 cleaned=$(bytes_for_humans "$cleaned")
 
-# send notification with cleaned space
-notify-send -i "~/Projects/dotfiles/docs/img/cleaner.png" "Cleaner" "Total cleaned: $cleaned"
+echo "cleaned $cleaned" >> ~/Projects/dotfiles/logs/log.txt
+
+notify-send "Cleaner" "$cleaned"
