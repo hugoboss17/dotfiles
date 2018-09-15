@@ -2,18 +2,43 @@ usage: myhelp [<args>]
 
 These are the possible commands:
 
+g="git"
+ga="git add"
+gs="git status"
+gst="git status"
+gcl="git clone"
+gpush="git push"
+gpull="git pull"
+gf="git fetch --all"
 gm="git checkout master"
 gmp="git checkout master && git pull"
 gdev="git checkout develop"
 gdevp="git checkout develop && git pull"
+gcf="git checkout feature/$1"
+gcfp="git checkout feature/$1 && git pull"
+gch="git checkout hotfix/$1"
+gchp="git checkout hotfix/$1 && git pull"
+gff="gdevp && git merge feature/$1 && git push && gmp && git merge feature/$1 && git push"
+gfh="gdevp && git merge hotfix/$1 && git push && gmp && git merge hotfix/$1 && git push"
+gmerge="git mergetool --tool=Kdiff3"
+gcommit="git commit -m '$1'"
+gmakef="gdevp && git checkout -b feature/$1"
+gmakeh="gmp && git checkout -b hotfix/$1"
+gsave="git stash"
+gload="git stash pop"
+glog="git log --graph --decorate"
+glogs="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+glogd="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
 gitflow:
    gm         Checkout master
    gmp        Checkout master and pull
    gdev       Checkout develop
    gdevp      Checkout develop and pull
-   gcf        Checkout feature and pull
-   gch        Checkout hotfix and pull
+   gcf        Checkout feature
+   gcfp       Checkout feature and pull
+   gch        Checkout hotfix
+   gchp       Checkout hotfix and pull
    gff        Finish feature
    gfh        Finish hotfix
    gmakef     Create a feature from develop branch

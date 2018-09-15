@@ -1,13 +1,12 @@
 #!/bin/bash
 
-if [ $# -eq 0 ]
-then
+if [ $# -eq 0 ]; then
     cat ../docs/myhelp/index
+    exit 0
+fi
+
+if [ -f ../docs/myhelp/$1 ]; then
+	cat ../docs/myhelp/$1
 else
-	if [ -f ../docs/myhelp/$1 ]
-	then
-		cat ../docs/myhelp/$1
-	else
-		echo "error: argument not found."
-	fi
+	echo "error: argument not found."
 fi
