@@ -23,8 +23,10 @@ So there it's, my dotfiles with constant updates.
 ```
 git clone https://github.com/hugofree17/dotfiles ~/.dotfiles
 cd ~/.dotfiles
-change args.sh to whatever is your needs.
-run install.sh and wait for the magic to happen.
+change arguments inside inc folder if needed.
+chmod +x start.sh
+sudo ./start.sh REPLACE_WITH_OS_TO_INSTALL
+Wait for the magic to happen.
 ```
 If you had any trouble with this project, please [open an issue](https://github.com/hugofree17/dotfiles/issues) so I can fix it. :)
 
