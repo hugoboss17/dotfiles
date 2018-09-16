@@ -29,7 +29,7 @@ chmod +x bootstrap.sh
 ex: sudo ./bootstrap.sh -o ubuntu -t all
 Wait for the magic to happen.
 ```
-If you had any trouble with this project, please [open an issue](https://github.com/hugofree17/dotfiles/issues) so I can fix it. :)
+If you had any trouble with this project, please [open an issue](https://github.com/hugoboss17/dotfiles/issues) so I can fix it. :)
 
 # See more
-You can [Fork it](https://github.com/hugofree17/dotfiles/fork) and test on your own or you can see more in [Dotfiles website](https://dotfiles.github.io/)
+You can [Fork it](https://github.com/hugoboss17/dotfiles/fork) and test on your own or you can see more in [Dotfiles website](https://dotfiles.github.io/)
