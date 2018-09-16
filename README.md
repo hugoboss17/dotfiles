@@ -18,14 +18,15 @@ So there it's, my dotfiles with constant updates.
 * Cronjobs
 * Notifications
 
-# Install
+# Install / Usage
 
 ```
 git clone https://github.com/hugofree17/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 change arguments inside inc folder if needed.
-chmod +x start.sh
-sudo ./start.sh REPLACE_WITH_OS_TO_INSTALL
+chmod +x bootstrap.sh
+./bootstrap.sh for instructions
+ex: sudo ./bootstrap.sh -o ubuntu -t all
 Wait for the magic to happen.
 ```
 If you had any trouble with this project, please [open an issue](https://github.com/hugofree17/dotfiles/issues) so I can fix it. :)
