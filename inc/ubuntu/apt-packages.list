@@ -1,5 +1,7 @@
-fish
-guake
+python3
+curl
+git
 htop
-pyhton3
+guake
+kdiff3
 virtualbox

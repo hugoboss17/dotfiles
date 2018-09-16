@@ -19,15 +19,15 @@ function bytes_for_humans() {
 			arg=$(expr 1024**2)
 		fi
 		total=$(awk "BEGIN{print $1 / $arg}")
-		echo "Total cleaned: $total $type"
+		echo "$total $type"
 	fi
 }
 
 function clean_up() {
 	# packages cleaner
-	apt-get clean
-	apt-get autoclean
-	apt-get autoremove -y
+	apt-get clean &>/dev/null
+	apt-get autoclean  &>/dev/null
+	apt-get autoremove -y &>/dev/null
 
 	# clean up or compress log files
 	logrotate --force /etc/logrotate.conf
@@ -49,6 +49,7 @@ after_space=$(df | awk '{if($3 != "Used" && $3 > 0)print $3}' | awk '{sum+=$1} E
 cleaned=$(expr $cur_space - $after_space)
 cleaned=$(bytes_for_humans "$cleaned")
 
-echo "cleaned $cleaned" >> ~/Projects/dotfiles/logs/log.txt
+date=$(date +'%d-%m-%Y %T')
+echo "$date : $cleaned" >> ~/Projects/dotfiles/logs/cleaner.log
 
-notify-send "Cleaner" "$cleaned"
+notify-send "Cleaned!" "$cleaned"

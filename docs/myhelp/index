@@ -1,15 +1,15 @@
+##
+#IN CONSTRUCTION
+##
+
 usage: myhelp [<args>]
 
 These are the possible commands:
 
-IN CONSTRUCTION
-#app shortcuts:
-#   git        Clone a repository into a new directory
-#   clone      Clone a repository into a new directory
+#app shortcuts: 
 
-#jumpers (directory's shortcuts):
-#   add        Add file contents to the index
+jumpers (directory's shortcuts):
+   projects        Jumps to ~/Projects
+   dotfiles        Jumps to ~/Projects/dotfiles
 
-#others (directory's shortcuts):
-#   install    Install a package
-#  remove     Remove a package
+#others:
