@@ -4,7 +4,7 @@ source inc/args.sh
 source inc/messages.sh
 source inc/functions.sh
 
-echo "" > $LOG
+touch $APP_LOG
 
 if [ $# -eq 0 ]; then
 doHelp

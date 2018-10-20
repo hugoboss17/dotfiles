@@ -3,7 +3,7 @@
 for package in `cat inc/ubuntu/apt-packages.list`; do
     running $package
     if ! dpkg --get-selections | grep -q "^$package[[:space:]]*install$" >/dev/null; then
-        apt install $package &>>$LOG
+        apt install -y $package &>>$APP_LOG
         if [ $? != 0 ]; then
             error "failed to install $package! aborting..."
             exit
@@ -16,6 +16,10 @@ source ubuntu/other-packages.sh
 
 for package in `cat inc/ubuntu/other-packages.list`; do
     running "$package"
+    if [ -f /usr/bin/"$package" ]; then
+        ok
+        continue
+    fi
     if ! dpkg --get-selections | grep -q "^$package[[:space:]]*install$" >/dev/null; then
         $package
     fi
@@ -23,9 +27,9 @@ for package in `cat inc/ubuntu/other-packages.list`; do
 done
 
 running "source lists"
-apt update -y &>>$LOG
+apt update -y &>>$APP_LOG
 ok
 
 running "dependencies"
-apt install -fy &>>$LOG
+apt install -fy &>>$APP_LOG
 ok

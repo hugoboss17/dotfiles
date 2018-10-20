@@ -1,34 +1,35 @@
 #!/bin/bash
 
 fish() {
-    apt-add-repository ppa:fish-shell/release-2 &>>$LOG
-    apt update &>>$LOG
-    apt install fish &>>$LOG
+    if [ ! -f /etc/apt/sources.list.d/fish-shell-ubuntu-nightly-master-cosmic.list ]; then
+        yes "" | add-apt-repository ppa:fish-shell/nightly-master &>>$APP_LOG
+    fi
+    apt-get update &>>$APP_LOG
+    apt-get install -y fish &>>$APP_LOG
 }
 
 omf() {
-    # Additional check
-    if [ -e ~/.config/fish/conf.d/omf.fish ]; then
-        return 1
+    if [ ! -f install ]; then
+        curl -s https://get.oh-my.fish > install
     fi
-    curl -qL https://get.oh-my.fish &>>$LOG | fish
+    ./install --noninteractive &>>$APP_LOG
 }
 
 sublime() {
-    # Additional check
-    if [ -e /usr/share/applications/sublime_text.desktop ]; then
+    if [ -f /usr/bin/subl ]; then
         return 1
     fi
-
     wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-    apt install apt-transport-https &> $LOG
-    echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list &>>$LOG
-    apt update &>>$LOG
-    apt install sublime-text &>>$LOG
+    apt install apt-transport-https &>>$APP_LOG
+    if [ ! -f /etc/apt/source.list.d/sublime-text.list ]; then
+        echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list &>>$APP_LOG
+    fi
+    apt update &>>$APP_LOG
+    apt install -y sublime-text &>>$APP_LOG
 }
 
 vagrant() {
-    wget https://releases.hashicorp.com/vagrant/2.1.5/vagrant_2.1.5_x86_64.deb -O ~/Downloads/vagrant.deb &>>$LOG
-    dpkg -i ~/Downloads/vagrant.deb &>>$LOG
+    wget https://releases.hashicorp.com/vagrant/2.1.5/vagrant_2.1.5_x86_64.deb -O ~/Downloads/vagrant.deb &>>$APP_LOG
+    dpkg -i ~/Downloads/vagrant.deb &>>$APP_LOG
     rm ~/Downloads/vagrant.deb
 }
