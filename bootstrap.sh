@@ -7,7 +7,7 @@ source inc/functions.sh
 touch $APP_LOG
 
 if [ $# -eq 0 ]; then
-doHelp
+	doHelp
 fi
 
 while getopts o:t: option
