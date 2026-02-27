@@ -1,0 +1,10 @@
+tap "homebrew/cask-fonts"
+
+brew "git"
+brew "wget"
+brew "htop"
+brew "docker"
+
+cask "docker"
+cask "iterm2"
+cask "visual-studio-code"
