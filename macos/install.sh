@@ -5,6 +5,8 @@ if ! command -v brew /dev/null 2>&1; then
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+eval "$(/usr/local/bin/brew shellenv)"
+
 echo "Updating brew.."
 brew update
 
