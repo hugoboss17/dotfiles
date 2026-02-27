@@ -1,25 +1,14 @@
 #!/bin/bash
 
-install_dependencies() {
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    brew install dpkg
-    brew install wget
-}
+echo "Installing brew.."
+if ! command -v brew /dev/null 2>&1; then
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-install_dependencies
+echo "Updating brew.."
+brew update
 
-for package in `cat inc/macos/brew-packages.list`; do
-    running $package
-    if [ -f /usr/bin/"$package" ]; then
-        ok
-        continue
-    fi
-    if ! dpkg --get-selections | grep -q "^$package[[:space:]]*install$" >/dev/null; then
-        brew install $package -y
-        if [ $? != 0 ]; then
-            error "failed to install $package! aborting..."
-            exit
-        fi
-    fi
-    ok
-done
+echo "Installing brew packages.."
+brew bundle --file=./Brewfile
+
+echo "Installation Setup complete!"
