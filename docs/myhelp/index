@@ -1,15 +1,9 @@
-##
-#IN CONSTRUCTION
-##
-
 usage: myhelp [<args>]
 
-These are the possible commands:
-
-#app shortcuts: 
+app aliases:
+   git
 
 jumpers (directory's shortcuts):
    projects        Jumps to ~/Projects
    dotfiles        Jumps to ~/Projects/dotfiles
 
-#others:

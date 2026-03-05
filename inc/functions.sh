@@ -1,37 +1,34 @@
 #!/bin/bash
 
 install() {
-    echo 
     bot "Installing for $OS"
-    echo
     chmod +x $OS/install.sh
     source $OS/install.sh
-    echo
-    echo "Installed"
+    bot "Installed for $OS"
 }
 
 configure() {
-    echo 
     bot "Configuring for $OS"
-    echo
     chmod +x $OS/configure.sh
     source $OS/configure.sh
-    echo
-    echo "Configured"
+    bot "Configured for $OS"
 }
 
 update() {
-    echo 
     bot "Updating for $OS"
-    echo
     chmod +x $OS/update.sh
     source $OS/update.sh
-    echo
-    echo "Updated"
+    bot "Updated for $OS"
 }
 
 all() {
-    install
-    #update
+    sudo -v
+
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done 2>/dev/null &
+    install &&
     configure
 }

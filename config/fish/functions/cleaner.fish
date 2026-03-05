@@ -1,4 +1,4 @@
 function cleaner
-    sudo bash ~/Projects/dotfiles/scripts/bash/cleaner.sh $argv
+    sudo bash $HOME/Projects/dotfiles/scripts/bash/cleaner.sh $argv
 end
 

@@ -1,4 +1,4 @@
 function myhelp
-    bash ~/Projects/dotfiles/scripts/bash/myhelp.sh $argv
+    bash $HOME/Projects/dotfiles/scripts/bash/myhelp.sh $argv
 end
 
