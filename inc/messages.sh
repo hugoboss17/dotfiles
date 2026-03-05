@@ -21,7 +21,9 @@ function ok() {
 }
 
 function bot() {
+    echo
     echo -e "\n$COL_GREEN\[._.]/$COL_RESET - "$1
+    echo
 }
 
 function running() {
@@ -41,10 +43,9 @@ function error() {
 }
 
 doHelp() {
-    echo "Usage: $(basename "$0") [options]"
+    echo "Usage: $(basename "$0") [option]"
     echo
-    echo "   -o         OS: Ubuntu, MacOS"
-    echo "   -t         Type: Install, Configure, Sync, All"
+    echo "   -t         Type: Install, Configure, All"
     echo
     exit
 }
