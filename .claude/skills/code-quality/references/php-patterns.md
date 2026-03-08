@@ -116,6 +116,7 @@ readonly class UserDto {
 
 | Anti-Pattern | Fix |
 |---|---|
+| `true === $value` (Yoda condition) | `$value === true` — Pint (Laravel preset) enforces this automatically |
 | Business logic in controllers | Move to Action classes (`app/Actions/`) |
 | Raw DB queries in controllers | Use Eloquent + Repository if complex |
 | `$request->all()` in store/update | Use `$request->validated()` always |

@@ -2,10 +2,10 @@
 name: database
 metadata:
   compatible_agents: [claude-code]
-  tags: [database, postgresql, mysql, sqlite, redis, schema, migration, optimization, indexing, backup]
+  tags: [database, postgresql, mysql, sqlite, valkey, redis, schema, migration, optimization, indexing, backup]
 description: >
   Database assistant for schema design, migration strategies, query optimization,
-  indexing, and backup/restore planning. Covers PostgreSQL, MySQL, SQLite, and Redis.
+  indexing, and backup/restore planning. Covers PostgreSQL, MySQL, SQLite, and Valkey.
   Trigger with: "design schema", "optimize query", "create migration",
   "add index", "database backup", "query performance", "normalize tables".
 ---

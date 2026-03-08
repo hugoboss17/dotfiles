@@ -51,8 +51,8 @@ Design a system architecture from a product description or PRD.
 - Backend: Laravel (PHP 8.3+)
 - Frontend: Vue 3 + TypeScript + Vite
 - Database: PostgreSQL
-- Queue: Redis + Laravel Horizon
-- Cache: Redis
+- Queue: Valkey + Laravel Horizon
+- Cache: Valkey
 - Storage: S3 or compatible (GCS, Azure Blob, Hetzner Object Storage)
 - Hosting: ask — AWS ECS / GCP Cloud Run / Azure ACI / Hetzner VPS
 - CI/CD: GitHub Actions
@@ -132,7 +132,7 @@ Plan GCP infrastructure for a workload.
 | Container hosting | Cloud Run (serverless) or GKE (K8s) |
 | VM compute | Compute Engine |
 | Managed database | Cloud SQL (PostgreSQL/MySQL) |
-| Redis cache | Memorystore |
+| Cache (Valkey) | Memorystore for Valkey |
 | Object storage | Cloud Storage (GCS) |
 | CDN | Cloud CDN |
 | Load balancer | Cloud Load Balancing |

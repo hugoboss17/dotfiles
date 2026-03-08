@@ -106,7 +106,7 @@ Generate GitHub Actions workflows for CI and CD.
 
 Generate Dockerfile and docker-compose for local development and production.
 
-**Input:** Stack description (default: Laravel + Vue/TS + PostgreSQL + Redis).
+**Input:** Stack description (default: Laravel + Vue/TS + PostgreSQL + Valkey).
 
 **Output:**
 - `Dockerfile` (multi-stage: build stage + production stage)

@@ -5,7 +5,7 @@
 ```
 Internet → Route 53 → CloudFront → ALB → ECS Fargate (Laravel)
                                          ↓
-                                    ElastiCache (Redis)
+                                    ElastiCache (Valkey)
                                     RDS PostgreSQL (private subnet)
                                     S3 (assets/uploads)
                                     SQS → ECS Worker (Horizon)

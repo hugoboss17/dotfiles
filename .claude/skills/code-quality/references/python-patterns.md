@@ -212,6 +212,7 @@ async def test_async_fetch() -> None:
 
 | Anti-Pattern | Correct Approach |
 |---|---|
+| `True == value` (Yoda condition) | `value == True` — or better, just `if value:` for booleans |
 | `def f(items=[])` mutable default | `def f(items: list \| None = None)` then `items = items or []` |
 | Bare `except:` | `except ValueError:` or `except (TypeError, ValueError):` |
 | `import *` | Explicit imports only |

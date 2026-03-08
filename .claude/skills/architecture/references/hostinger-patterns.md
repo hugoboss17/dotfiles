@@ -69,9 +69,9 @@ services:
     networks: [internal]
 
   redis:
-    image: redis:7-alpine
+    image: valkey/valkey:8-alpine
     restart: unless-stopped
-    command: redis-server --requirepass ${REDIS_PASSWORD}
+    command: valkey-server --requirepass ${REDIS_PASSWORD}
     networks: [internal]
 
   queue:

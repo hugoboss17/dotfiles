@@ -228,7 +228,9 @@ func TestGetUser(t *testing.T) {
     assert.Equal(t, http.StatusOK, w.Code)
 }
 
-// Interface mocking (without external lib)
+// Prefer real implementations (SQLite in-memory, testcontainers) over mocks.
+// Use fake structs only when testing a layer in isolation from an external boundary
+// (e.g. testing an HTTP handler without spinning up a DB, or mocking an external API client).
 type mockUserRepo struct {
     user *User
     err  error
@@ -245,6 +247,7 @@ func (m *mockUserRepo) FindByID(ctx context.Context, id int) (*User, error) {
 
 | Anti-Pattern | Correct Approach |
 |---|---|
+| `if nil != err` (Yoda condition) | `if err != nil` — idiomatic Go puts the variable first |
 | `if err != nil { return err }` without context | Wrap: `fmt.Errorf("op: %w", err)` |
 | Interface with many methods | Small, focused interfaces (1-3 methods) |
 | `init()` functions with side effects | Explicit initialisation in `main()` |

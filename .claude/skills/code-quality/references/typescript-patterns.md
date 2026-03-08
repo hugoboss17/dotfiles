@@ -125,6 +125,7 @@ export default api
 
 | Anti-Pattern | Fix |
 |---|---|
+| `true === value` (Yoda condition) | `value === true` — ESLint `yoda: "never"` rule enforces this |
 | `any` type | Use proper type, generic, or `unknown` |
 | `// @ts-ignore` | Fix the type error |
 | Options API in new components | Use `<script setup>` with Composition API |

@@ -2,13 +2,15 @@
 name: code-quality
 metadata:
   compatible_agents: [claude-code]
-  tags: [php, laravel, typescript, vue, go, python, pest, phpstan, pint, rector, eslint, golangci-lint, ruff, mypy, code-review]
+  tags: [php, laravel, typescript, vue, go, python, phaser, game-dev, pest, phpstan, pint, rector, eslint, golangci-lint, ruff, mypy, code-review]
 description: >
-  Code quality assistant for PHP/Laravel, TypeScript/Vue, Go, and Python codebases.
+  Code quality assistant for PHP/Laravel, TypeScript/Vue, Go, Python, and Phaser 3 codebases.
   Runs quality checks, scaffolds tests, generates PR review checklists,
-  enforces static analysis, and modernises code.
+  enforces static analysis, and modernises code. Also handles Phaser 3 game code review,
+  JS→TS migration, scene patterns, and object pooling.
   Trigger with: "review this code", "check code quality", "write tests for",
-  "run static analysis", "fix code style", "scaffold pest tests", "review my PR".
+  "run static analysis", "fix code style", "scaffold pest tests", "review my PR",
+  "review this scene", "phaser code review", "migrate phaser to typescript".
 ---
 
 ## Commands
@@ -20,6 +22,7 @@ description: >
 | `/quality ts` | TypeScript and Vue quality check |
 | `/quality go` | Go static analysis, formatting, and linting |
 | `/quality py` | Python type checking, linting, and formatting |
+| `/quality phaser` | Phaser 3 scene/game code review and JS→TS migration |
 | `/quality test` | Scaffold Pest tests for a class or feature |
 | `/quality pr` | Generate a PR review checklist |
 
@@ -36,6 +39,7 @@ Perform a full code review of a file, class, or diff.
 - **Security:** injection risks, auth bypasses, mass assignment, exposed secrets
 - **Performance:** N+1 queries, missing indexes, unnecessary loops, eager load opportunities
 - **Maintainability:** naming clarity, single responsibility, duplication, magic numbers
+- **Design patterns:** flag missing patterns (Strategy over if/switch, Observer over tight coupling, etc.) — use `references/design-patterns.md`
 - **Test coverage:** what is untested, what edge cases are missing
 
 **Output format:**
@@ -244,7 +248,7 @@ Scaffold Pest tests for a given class, feature, or endpoint.
 **Auto-detect:**
 - Is this a Model? → Unit test + Factory usage
 - Is this a Controller/Action? → Feature test with HTTP assertions
-- Is this a Service/Action class? → Unit test with mocks
+- Is this a Service/Action class? → Unit test with real dependencies where possible; mock only external APIs/services
 - Is this a Vue component? → Vitest component test
 
 **PHP/Pest output structure:**
@@ -281,6 +285,8 @@ describe('[ClassName]', function () {
 - Include architecture test: `arch()->preset()->laravel()`
 - Factory states for complex scenarios — never raw `Model::create()` in tests
 - Use `actingAs()` for authenticated routes
+- **Prefer real dependencies over mocks** — use `RefreshDatabase` + factories, real service instances, in-memory queues (`Queue::fake()` only when asserting dispatch)
+- **Mock only true external boundaries** — third-party HTTP APIs (`Http::fake()`), payment gateways, email/SMS providers (`Mail::fake()`, `Notification::fake()`)
 
 ---
 
@@ -328,6 +334,34 @@ Generate a PR review checklist based on the diff or PR description.
 
 ---
 
+## `/quality phaser`
+
+Review Phaser 3 game code or migrate a JS project to TypeScript.
+
+**Input:** Scene file, game object class, or project directory.
+
+**Review covers:**
+- Scene lifecycle correctness (init/preload/create/update/shutdown)
+- Object pooling — no `new` / `add.*()` calls inside `update()`
+- Event listener cleanup in `shutdown`
+- Asset loading strategy (atlases vs individual images)
+- Frame-rate independence (delta-based movement)
+- Logic separation — game rules in plain classes, not Scene methods
+- TypeScript typing — no untyped properties, no `any`
+
+**JS → TS migration steps:**
+1. Add `tsconfig.json` with `"allowJs": true, "checkJs": false`
+2. Rename entry point(s) to `.ts`
+3. Enable `// @ts-check` per JS file to surface errors gradually
+4. Rename remaining `.js` → `.ts`, fix type errors
+5. Enable `"strict": true` when all files are `.ts`
+
+**Output format:** same as `/quality review` (Critical / Warnings / Suggestions / Looks Good)
+
+Use `references/phaser-patterns.md` for all patterns and examples.
+
+---
+
 ## Trigger Phrases
 
 `review this code`, `code review`, `check code quality`, `write tests`,
@@ -335,7 +369,9 @@ Generate a PR review checklist based on the diff or PR description.
 `PHPStan errors`, `Pint fix`, `Rector refactor`, `TypeScript errors`,
 `Vue component review`, `review my PR`, `PR checklist`,
 `golangci-lint`, `go vet`, `gofmt`, `Go code review`,
-`ruff`, `mypy`, `Python type hints`, `Python code review`
+`ruff`, `mypy`, `Python type hints`, `Python code review`,
+`review this scene`, `phaser code review`, `phaser scene`, `game object`,
+`migrate phaser to typescript`, `phaser JS to TS`
 
 ---
 
@@ -367,3 +403,5 @@ Generate a PR review checklist based on the diff or PR description.
 | `references/pest-patterns.md` | Pest test structure, dataset patterns, architecture testing |
 | `references/go-patterns.md` | golangci-lint config, Go project structure, testing patterns |
 | `references/python-patterns.md` | ruff/mypy config, pytest patterns, Python modernisation |
+| `references/design-patterns.md` | GoF design patterns catalog with Laravel/TS/Go examples and SOLID principles |
+| `references/phaser-patterns.md` | Phaser 3.90+ scene patterns, object pooling, asset management, JS→TS migration |

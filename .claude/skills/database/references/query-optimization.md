@@ -273,7 +273,7 @@ LIMIT 20;
 
 ---
 
-## Redis Patterns
+## Valkey Patterns
 
 ### Caching (Laravel)
 ```php

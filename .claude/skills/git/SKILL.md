@@ -1,5 +1,5 @@
 ---
-name: git-workflow
+name: git
 metadata:
   compatible_agents: [claude-code]
   tags: [git, conventional-commits, changelog, semver, release, branching, gitflow]
@@ -230,12 +230,3 @@ Advise on branch naming and strategy for a given task.
 | Breaking changes without `BREAKING CHANGE` footer | Always document breaking changes explicitly |
 | Long-lived feature branches | Merge frequently — branches older than 2 weeks need rebase |
 
----
-
-## References
-
-| File | Purpose |
-|------|---------|
-| `references/conventional-commits.md` | Full type/scope reference, examples, edge cases |
-| `references/branching-strategy.md` | Gitflow conventions, branch lifecycle, merge rules |
-| `references/changelog-template.md` | Keep a Changelog format, version section structure |

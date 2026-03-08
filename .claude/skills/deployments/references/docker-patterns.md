@@ -104,7 +104,7 @@ services:
     ports: ["5432:5432"]
 
   redis:
-    image: redis:7-alpine
+    image: valkey/valkey:8-alpine
     ports: ["6379:6379"]
 
 volumes:

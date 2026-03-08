@@ -1,0 +1,69 @@
+# Required GitHub secrets:
+#   SIGNING_KEY          — base64-encoded keystore file: base64 -i keystore.jks | pbcopy
+#   KEY_ALIAS            — key alias inside the keystore
+#   KEY_STORE_PASSWORD   — keystore password
+#   KEY_PASSWORD         — key password
+#
+# Triggers on any git tag push: git tag 1.0.0 && git push --tags
+
+name: Android Release
+
+on:
+  push:
+    tags: ['*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & sign AAB
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build web
+        run: npm run build
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Capacitor sync
+        run: npx cap sync android
+
+      - name: Build release AAB
+        working-directory: android
+        run: ./gradlew bundleRelease
+
+      - name: Sign AAB
+        uses: r0adkll/sign-android-release@v1
+        id: sign
+        with:
+          releaseDirectory: android/app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Upload signed AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-aab-${{ github.ref_name }}
+          path: ${{ steps.sign.outputs.signedReleaseFile }}
+          retention-days: 30
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.sign.outputs.signedReleaseFile }}
+          generate_release_notes: true

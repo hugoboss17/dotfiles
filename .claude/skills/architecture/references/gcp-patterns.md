@@ -9,7 +9,7 @@
 | EKS | GKE | Managed Kubernetes — GKE is more mature |
 | Lambda | Cloud Functions | Serverless functions |
 | RDS | Cloud SQL | PostgreSQL, MySQL, SQL Server |
-| ElastiCache | Memorystore | Redis or Memcached |
+| ElastiCache | Memorystore | Valkey (preferred) or Memcached |
 | S3 | Cloud Storage (GCS) | S3-compatible API available |
 | CloudFront | Cloud CDN | Integrated with Cloud Load Balancing |
 | ALB | Cloud Load Balancing | Global HTTP(S) LB |
@@ -35,7 +35,7 @@ Cloud Load Balancing (HTTPS + SSL cert)
 Cloud Run (Laravel app — auto-scales to zero)
   │
   ├── Cloud SQL (PostgreSQL — private IP)
-  ├── Memorystore Redis (private IP)
+  ├── Memorystore for Valkey (private IP)
   └── Cloud Storage (GCS) ← static assets, uploads
 ```
 
