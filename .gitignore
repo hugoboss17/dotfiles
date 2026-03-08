@@ -1,3 +1,5 @@
 bkp/
 
 .env
+
+.claude/settings.local.json
