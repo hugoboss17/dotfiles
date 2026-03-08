@@ -6,6 +6,7 @@ brew "nmap"
 brew "thefuck"
 brew "node"
 brew "gh"
+brew "tmux"
 
 cask "docker-desktop"
 cask "iterm2"
