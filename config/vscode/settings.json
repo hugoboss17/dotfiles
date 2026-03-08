@@ -9,5 +9,52 @@
         "fish": {
             "path": "/opt/homebrew/bin/fish"
         }
+    },
+
+    "editor.formatOnSave": true,
+    "editor.rulers": [120],
+    "editor.bracketPairColorization.enabled": true,
+    "editor.stickyScroll.enabled": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true,
+        "**/.git": true
+    },
+
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true
+    },
+
+    "emmet.includeLanguages": {
+        "vue-html": "html"
+    },
+
+    "scm.defaultViewMode": "tree",
+    "gitlens.hovers.currentLine.enabled": true,
+
+    "[php]": {
+        "editor.defaultFormatter": "devsense.phptools-vscode",
+        "editor.tabSize": 4
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "vue.volar",
+        "editor.tabSize": 2
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
     }
 }
