@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+export RC_FILE="$HOME/.zprofile"
 export SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export DOTFILES_DIR="$(dirname "$SCRIPT_DIR")"
 

@@ -1,19 +1,41 @@
 #!/bin/bash
 set -euo pipefail
 
+DOTFILES_DIR="${DOTFILES_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
+
 current_name=$(git config --global user.name || true)
 current_email=$(git config --global user.email || true)
 
 if [ -z "$current_name" ]; then
-  git config --global user.name "$NAME"
+  if [ -z "${NAME:-}" ]; then
+    echo "Warning: NAME is not set, skipping git user.name"
+  else
+    git config --global user.name "$NAME"
+  fi
 else
   echo "Git user.name already set to: $current_name"
 fi
 
 if [ -z "$current_email" ]; then
-  git config --global user.email "$EMAIL"
+  if [ -z "${EMAIL:-}" ]; then
+    echo "Warning: EMAIL is not set, skipping git user.email"
+  else
+    git config --global user.email "$EMAIL"
+  fi
 else
   echo "Git user.email already set to: $current_email"
 fi
 
-git config --global --add --bool push.autoSetupRemote true
+git config --global --replace-all --bool push.autoSetupRemote true
+git config --global pull.rebase true
+git config --global credential.helper osxkeychain
+git config --global init.defaultBranch main
+
+GLOBAL_GITIGNORE="$HOME/.gitignore_global"
+if ! git config --global --get core.excludesfile > /dev/null 2>&1; then
+    ln -sf "$DOTFILES_DIR/config/git/gitignore_global" "$GLOBAL_GITIGNORE"
+    git config --global core.excludesfile "$GLOBAL_GITIGNORE"
+    echo "Global gitignore set up at $GLOBAL_GITIGNORE"
+else
+    echo "Global gitignore already configured, skipping"
+fi

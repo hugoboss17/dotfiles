@@ -1,3 +1,3 @@
 function gcommit
-    git commit -m $argv[1]
+    git commit -m (string join ' ' $argv)
 end

@@ -1,7 +1,3 @@
-function projects
-  cd $HOME/Projects
-end
-
 function p
     set project "$argv[1]"
     set project_dir "$HOME/Projects/$project"

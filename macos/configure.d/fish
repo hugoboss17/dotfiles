@@ -24,6 +24,9 @@ fi
 mkdir -p "$HOME/.config/fish/functions"
 mkdir -p "$HOME/.config/fish/conf.d"
 
+ln -sf "$DOTFILES_DIR/config/fish/config.fish" "$HOME/.config/fish/config.fish"
+echo "Linking fish config.fish"
+
 for src in "$DOTFILES_DIR/config/fish/functions/"*.fish; do
     fname="$(basename "$src")"
     dest="$HOME/.config/fish/functions/$fname"

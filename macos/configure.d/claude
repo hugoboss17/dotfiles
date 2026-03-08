@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
+CLAUDE_COMMANDS_DIR="$HOME/.claude/commands"
+
+mkdir -p "$CLAUDE_COMMANDS_DIR"
+
+for skill_dir in "$DOTFILES_DIR/skills/"*/; do
+    skill_name="$(basename "$skill_dir")"
+    skill_file="$skill_dir/SKILL.md"
+    if [ -f "$skill_file" ]; then
+        ln -sf "$skill_file" "$CLAUDE_COMMANDS_DIR/$skill_name.md"
+        echo "Linking skill: $skill_name"
+    fi
+done
