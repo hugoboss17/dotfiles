@@ -1,0 +1,36 @@
+#!/bin/bash
+set -euo pipefail
+
+source inc/messages
+
+if [ $# -eq 0 ]; then
+    doHelp
+fi
+
+set -a
+source .env
+set +a
+source inc/functions
+
+touch $APP_LOG
+
+# Auto-detect OS
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    OS="macos"
+elif [[ -f /etc/os-release ]]; then
+    . /etc/os-release
+    if [[ "${ID,,}" == "ubuntu" || "${ID_LIKE,,}" == *ubuntu* ]]; then
+        OS="ubuntu"
+    else
+        OS="${ID,,}"
+    fi
+else
+    OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
+fi
+
+TYPE="$1"
+if ! echo "$ALLOWED_TYPES" | grep -qw "$TYPE"; then
+    error "Unknown type '$TYPE'. Allowed: $ALLOWED_TYPES"
+    doHelp
+fi
+"$TYPE"

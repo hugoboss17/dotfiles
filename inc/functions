@@ -1,0 +1,31 @@
+#!/bin/bash
+
+install() {
+    bot "Installing for $OS"
+    source $OS/install
+    bot "Installed for $OS"
+}
+
+configure() {
+    bot "Configuring for $OS"
+    source $OS/configure
+    bot "Configured for $OS"
+}
+
+update() {
+    bot "Updating for $OS"
+    source $OS/update
+    bot "Updated for $OS"
+}
+
+all() {
+    sudo -v
+
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done 2>/dev/null &
+    install &&
+    configure
+}

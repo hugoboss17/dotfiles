@@ -37,3 +37,6 @@ others:
    gsave      Stash current changes
    gload      Load from stash
    gcommit    Commit changes
+
+setup:
+   gsetup     Scaffold GitHub workflows into current repo (run with no args for help)

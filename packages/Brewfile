@@ -5,6 +5,7 @@ brew "fish"
 brew "nmap"
 brew "thefuck"
 brew "node"
+brew "gh"
 
 cask "docker-desktop"
 cask "iterm2"

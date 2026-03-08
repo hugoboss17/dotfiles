@@ -1,5 +1,3 @@
-# IN CONSTRUCTION
-
 # Hugo does dotfiles
 
 This is a way to personalize your system.
@@ -23,13 +21,18 @@ git clone https://github.com/hugofree17/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 ```
 
-change arguments inside inc folder if needed.
+Copy `env.example` to `.env` and fill in your details:
 
 ```
-chmod +x bootstrap.sh
-./bootstrap.sh for instructions
+cp env.example .env
+```
 
-ex: ./bootstrap.sh -t all
+Then run:
+
+```
+./bootstrap for instructions
+
+ex: ./bootstrap all
 ```
 Wait for the magic to happen.
 

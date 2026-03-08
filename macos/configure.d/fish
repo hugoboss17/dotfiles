@@ -1,0 +1,42 @@
+#!/bin/bash
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
+
+SHELL_FILE="/etc/shells"
+FISH_CONFIG="$HOME/.config/fish/config.fish"
+
+if ! grep -q "fish" "$SHELL_FILE"; then
+    echo "Adding fish to $SHELL_FILE"
+    echo "$(which fish)" | sudo tee -a "$SHELL_FILE" > /dev/null
+else
+    echo "Fish already in $SHELL_FILE, skipping"
+fi
+
+current_shell=$(dscl . -read /Users/"$USER" UserShell | awk '{print $2}')
+if [ "$current_shell" != "$(which fish)" ]; then
+    echo "Setting default shell to fish"
+    sudo dscl . -create /Users/"$USER" UserShell "$(which fish)"
+else
+    echo "Default shell is already fish, skipping"
+fi
+
+mkdir -p "$HOME/.config/fish/functions"
+mkdir -p "$HOME/.config/fish/conf.d"
+
+ln -sf "$DOTFILES_DIR/config/fish/config.fish" "$HOME/.config/fish/config.fish"
+echo "Linking fish config.fish"
+
+for src in "$DOTFILES_DIR/config/fish/functions/"*.fish; do
+    fname="$(basename "$src")"
+    dest="$HOME/.config/fish/functions/$fname"
+    echo "Linking fish function: $fname"
+    ln -sf "$src" "$dest"
+done
+
+for src in "$DOTFILES_DIR/config/fish/conf.d/"*.fish; do
+    fname="$(basename "$src")"
+    dest="$HOME/.config/fish/conf.d/$fname"
+    echo "Linking fish conf.d: $fname"
+    ln -sf "$src" "$dest"
+done

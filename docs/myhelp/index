@@ -7,3 +7,8 @@ jumpers (directory's shortcuts):
    projects        Jumps to ~/Projects
    dotfiles        Jumps to ~/Projects/dotfiles
 
+gsetup:
+  pr-description   Add AI-generated PR description workflow
+  phaser-ci        Add Phaser CI workflow (TypeScript check + build)
+  android-release  Add Android signed AAB release workflow
+  laravel-ci       Add Laravel CI workflow (Pint + PHPStan + Pest)

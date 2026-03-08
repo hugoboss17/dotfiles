@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 for package in `cat inc/ubuntu/apt-packages.list`; do
     running $package

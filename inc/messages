@@ -45,7 +45,7 @@ function error() {
 doHelp() {
     echo "Usage: $(basename "$0") [option]"
     echo
-    echo "   -t         Type: Install, Configure, All"
+    echo "Options: install, configure, update, all"
     echo
     exit
 }
