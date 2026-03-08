@@ -13,7 +13,7 @@ for package in `cat inc/ubuntu/apt-packages.list`; do
     ok
 done
 
-source ubuntu/other-packages.sh
+source ubuntu/other-packages
 
 for package in `cat inc/ubuntu/other-packages.list`; do
     running "$package"
