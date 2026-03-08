@@ -19,6 +19,7 @@ So there it's, my dotfiles with (not so) constant updates.
 ```
 git clone https://github.com/hugofree17/dotfiles ~/.dotfiles
 cd ~/.dotfiles
+<<<<<<< HEAD
 ```
 
 Copy `env.example` to `.env` and fill in your details:
@@ -34,6 +35,18 @@ Then run:
 
 ex: ./bootstrap all
 ```
+=======
+```
+
+change arguments inside inc folder if needed.
+
+```
+chmod +x bootstrap.sh
+./bootstrap.sh for instructions
+
+ex: ./bootstrap.sh -t all
+```
+>>>>>>> main
 Wait for the magic to happen.
 
 
