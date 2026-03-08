@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 fish() {
     if [ ! -f /etc/apt/sources.list.d/fish-shell-ubuntu-nightly-master-cosmic.list ]; then

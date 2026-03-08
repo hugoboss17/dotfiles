@@ -2,22 +2,19 @@
 
 install() {
     bot "Installing for $OS"
-    chmod +x $OS/install.sh
-    source $OS/install.sh
+    source $OS/install
     bot "Installed for $OS"
 }
 
 configure() {
     bot "Configuring for $OS"
-    chmod +x $OS/configure.sh
-    source $OS/configure.sh
+    source $OS/configure
     bot "Configured for $OS"
 }
 
 update() {
     bot "Updating for $OS"
-    chmod +x $OS/update.sh
-    source $OS/update.sh
+    source $OS/update
     bot "Updated for $OS"
 }
 

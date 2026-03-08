@@ -1,24 +1,18 @@
 #!/bin/bash
+set -euo pipefail
 
-source inc/args.sh
-source inc/messages.sh
-source inc/functions.sh
-
-touch $APP_LOG
+source inc/messages
 
 if [ $# -eq 0 ]; then
     doHelp
 fi
 
-while getopts t: option
-do
-    case "${option}"
-    in
-    t) TYPE=${OPTARG};;
-    esac
-done
+set -a
+source .env
+set +a
+source inc/functions
 
-TYPE="$1"
+touch $APP_LOG
 
 # Auto-detect OS
 if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -34,4 +28,9 @@ else
     OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
 fi
 
+TYPE="$1"
+if ! echo "$ALLOWED_TYPES" | grep -qw "$TYPE"; then
+    error "Unknown type '$TYPE'. Allowed: $ALLOWED_TYPES"
+    doHelp
+fi
 "$TYPE"

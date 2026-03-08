@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+
+current_name=$(git config --global user.name || true)
+current_email=$(git config --global user.email || true)
+
+if [ -z "$current_name" ]; then
+  git config --global user.name "$NAME"
+else
+  echo "Git user.name already set to: $current_name"
+fi
+
+if [ -z "$current_email" ]; then
+  git config --global user.email "$EMAIL"
+else
+  echo "Git user.email already set to: $current_email"
+fi
+
+git config --global --add --bool push.autoSetupRemote true

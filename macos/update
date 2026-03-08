@@ -1,15 +1,10 @@
 #!/bin/bash
-
-RC_FILE="$HOME/.zprofile"
-
-if ! /usr/bin/pgrep oahd >/dev/null 2>&1; then
-    sudo softwareupdate --install-rosetta --agree-to-license
-fi
+set -euo pipefail
 
 brew update
 
 echo "Updating brew packages.."
-brew bundle --file=./Packages/Brewfile
+brew bundle --file=./packages/Brewfile
 
 echo "Updating VS Code packages.."
 if [ -f "./packages/Vscode" ]; then

@@ -1,8 +1,9 @@
 #!/bin/bash
+set -euo pipefail
 
-ZPROFILE="$HOME/.zprofile"
+ZPROFILE="${RC_FILE:-$HOME/.zprofile}"
 
-if ! command -v php /dev/null 2>&1; then
+if ! command -v php > /dev/null 2>&1; then
     /bin/bash -c "$(curl -fsSL https://php.new/install/mac)"
 fi
 
