@@ -8,9 +8,5 @@ mkdir -p "$HOME/.config/tmux"
 echo "Linking tmux config"
 ln -sf "$DOTFILES_DIR/config/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
 
-echo "Linking tmux help"
-ln -sf "$DOTFILES_DIR/config/tmux/help.sh" "$HOME/.config/tmux/help.sh"
-chmod +x "$HOME/.config/tmux/help.sh"
-
 echo "Installing tmux plugins"
 /opt/homebrew/opt/tpm/share/tpm/bin/install_plugins

@@ -2,6 +2,7 @@ usage: myhelp [<args>]
 
 app aliases:
    git
+   tmux
 
 jumpers (directory's shortcuts):
    projects        Jumps to ~/Projects
