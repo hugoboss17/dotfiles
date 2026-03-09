@@ -1,6 +1,6 @@
 usage: myhelp tmux
 
-prefix = Ctrl+Space  (press before every command below)
+prefix = Ctrl+T  (press before every command below)
 
 sessions:
    tmux                      Start new session
