@@ -1,3 +1,5 @@
+tap "armand-sauzay/homebrew-tap"
+
 brew "git"
 brew "wget"
 brew "htop"
@@ -8,6 +10,7 @@ brew "node"
 brew "gh"
 brew "tmux"
 brew "tpm"
+brew "armand-sauzay/homebrew-tap/note"
 
 cask "docker-desktop"
 cask "iterm2"
