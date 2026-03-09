@@ -9,5 +9,6 @@ echo "Linking tmux config"
 ln -sf "$DOTFILES_DIR/config/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
 
 echo "Installing tmux plugins"
-tmux start-server \; set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins/"
+tmux start-server
+tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins/"
 /opt/homebrew/opt/tpm/share/tpm/bin/install_plugins
