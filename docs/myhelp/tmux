@@ -1,6 +1,6 @@
 usage: myhelp tmux
 
-prefix = Ctrl+T  (press before every command below)
+prefix = Ctrl+B  (press before every command below)
 
 sessions:
    tmux                      Start new session
@@ -20,10 +20,11 @@ windows (tabs):
    prefix  &                 Kill window
 
 panes (splits):
-   prefix  |                 Split vertically (side by side)
-   prefix  -                 Split horizontally (top/bottom)
-   prefix  h/j/k/l           Navigate panes (vim-style)
+   prefix  v                 Split vertically (side by side)
+   prefix  h                 Split horizontally (top/bottom)
+   prefix  arrow keys        Navigate panes
    prefix  H/J/K/L           Resize pane (hold prefix + repeat)
+   prefix  Ctrl+arrows       Resize pane (alternative)
    prefix  z                 Zoom pane (fullscreen toggle)
    prefix  x                 Kill pane
 
