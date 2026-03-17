@@ -1,0 +1,2 @@
+# Force LF line endings for all files (shell scripts break with CRLF on WSL/Linux)
+* text=auto eol=lf

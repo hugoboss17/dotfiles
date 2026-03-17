@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
+
+if [ "${WSL:-false}" = "true" ]; then
+    echo "WSL detected — VS Code settings are managed on the Windows side, skipping"
+    exit 0
+fi
+
+VSCODE_SETTINGS_DIR="$HOME/.config/Code/User"
+mkdir -p "$VSCODE_SETTINGS_DIR"
+
+echo "Linking VS Code settings"
+ln -sf "$DOTFILES_DIR/config/vscode/settings.json" "$VSCODE_SETTINGS_DIR/settings.json"

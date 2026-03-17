@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
+
+VSCODE_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
+mkdir -p "$VSCODE_SETTINGS_DIR"
+
+echo "Linking VS Code settings"
+ln -sf "$DOTFILES_DIR/config/vscode/settings.json" "$VSCODE_SETTINGS_DIR/settings.json"

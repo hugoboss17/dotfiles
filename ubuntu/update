@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(dirname "$SCRIPT_DIR")"
+
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get autoremove -y
+
+echo "Updating VS Code packages.."
+if [ -f "$DOTFILES_DIR/packages/Vscode" ]; then
+    while IFS= read -r ext || [ -n "$ext" ]; do
+        ext="${ext%%#*}"
+        ext="$(printf '%s' "$ext" | tr -d '\r' | xargs)"
+        [ -z "$ext" ] && continue
+        code --install-extension "$ext" --force || true
+    done < "$DOTFILES_DIR/packages/Vscode"
+fi

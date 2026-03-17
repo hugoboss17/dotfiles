@@ -218,6 +218,14 @@ Advise on branch naming and strategy for a given task.
 
 ---
 
+## Commit Behaviour
+
+- **Never commit unless the user explicitly asks** — do not proactively run `git commit` or `git push`
+- **Never add `Co-Authored-By: Claude` footer** to commit messages
+- Only stage and commit when the user says "commit", "yes commit", or similar explicit confirmation
+
+---
+
 ## Anti-Patterns
 
 | Anti-Pattern | Correct Approach |
@@ -230,3 +238,11 @@ Advise on branch naming and strategy for a given task.
 | Breaking changes without `BREAKING CHANGE` footer | Always document breaking changes explicitly |
 | Long-lived feature branches | Merge frequently — branches older than 2 weeks need rebase |
 
+
+---
+
+## Code Style
+
+- Write human-readable code
+- No comments unless absolutely necessary — code should be self-explanatory through naming and structure
+- Never commit unless the user explicitly asks

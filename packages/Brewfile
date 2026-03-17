@@ -1,3 +1,5 @@
+tap "armand-sauzay/homebrew-tap"
+
 brew "git"
 brew "wget"
 brew "htop"
@@ -6,6 +8,52 @@ brew "nmap"
 brew "thefuck"
 brew "node"
 brew "gh"
+brew "pipx"
+brew "ruby"
+brew "tmux"
+brew "tpm"
+brew "armand-sauzay/homebrew-tap/note"
+brew "pre-commit"
+brew "bats-core"
+brew "hugo"
+
+# Security / Penetration Testing
+brew "nikto"
+brew "sqlmap"
+brew "gobuster"
+brew "ffuf"
+brew "hydra"
+brew "nuclei"
+brew "amass"
+brew "masscan"
+brew "john-jumbo"
+brew "hashcat"
+brew "testssl"
+brew "sslscan"
+brew "theharvester"
+brew "exploitdb"
+brew "httpie"
+brew "pandoc"
+
+# Security / Recon (ProjectDiscovery suite)
+brew "subfinder"
+brew "httpx"
+brew "katana"
+
+# Security / Web Testing
+brew "dalfox"
+brew "feroxbuster"
+
+# Security / Secrets & OSINT
+brew "trufflehog"
+
+# Security / Mobile
+brew "apktool"
+brew "jadx"
+
+cask "burp-suite"
+cask "wireshark-app"
+cask "basictex"
 
 cask "docker-desktop"
 cask "iterm2"

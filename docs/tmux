@@ -1,0 +1,39 @@
+usage: myhelp tmux
+
+prefix = Ctrl+B  (press before every command below)
+
+sessions:
+   tmux                      Start new session
+   tmux new -s name          Start named session
+   tmux ls                   List sessions
+   tmux a -t name            Attach to session
+   prefix  $                 Rename current session
+   prefix  s                 Switch / list sessions
+   prefix  d                 Detach (leave session running)
+
+windows (tabs):
+   prefix  c                 New window
+   prefix  ,                 Rename window
+   prefix  n                 Next window
+   prefix  p                 Previous window
+   prefix  1-9               Jump to window by number
+   prefix  &                 Kill window
+
+panes (splits):
+   prefix  v                 Split vertically (side by side)
+   prefix  h                 Split horizontally (top/bottom)
+   prefix  arrow keys        Navigate panes
+   prefix  H/J/K/L           Resize pane (hold prefix + repeat)
+   prefix  Ctrl+arrows       Resize pane (alternative)
+   prefix  z                 Zoom pane (fullscreen toggle)
+   prefix  x                 Kill pane
+
+copy mode:
+   prefix  [                 Enter copy mode
+   v                         Start selection
+   y                         Copy selection and exit
+   q  or  Escape             Exit copy mode
+
+other:
+   prefix  r                 Reload config
+   prefix  ?                 Show this cheatsheet inside tmux

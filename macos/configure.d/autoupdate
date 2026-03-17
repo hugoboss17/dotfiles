@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+
+# Auto-update is currently disabled to avoid issues with Homebrew updates breaking the update process. Re-enable once a more robust solution is implemented.
