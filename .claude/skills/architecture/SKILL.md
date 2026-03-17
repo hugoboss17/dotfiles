@@ -369,3 +369,11 @@ Review and critique an existing architecture.
 | `references/hetzner-patterns.md` | Hetzner Cloud setup, K3s, cost optimisation |
 | `references/hostinger-patterns.md` | Hostinger VPS and shared hosting deployment patterns |
 | `references/api-design.md` | REST API conventions, error formats, pagination patterns |
+
+---
+
+## Code Style
+
+- Write human-readable code
+- No comments unless absolutely necessary — code should be self-explanatory through naming and structure
+- Never commit unless the user explicitly asks

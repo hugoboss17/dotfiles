@@ -1,0 +1,29 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "Installing Python security tools (via pipx)..."
+
+# Ensure pipx is available
+if ! command -v pipx &>/dev/null; then
+    brew install pipx
+    pipx ensurepath
+fi
+
+# PyPI packages
+for tool in \
+    impacket \
+    frida-tools \
+    objection \
+    arjun \
+    apkleaks \
+    shodan \
+    scoutsuite \
+    prowler \
+    wafw00f \
+    webtech
+do
+    pipx install "$tool" --quiet || pipx upgrade "$tool" --quiet || true
+done
+
+
+echo "Python security tools installed."

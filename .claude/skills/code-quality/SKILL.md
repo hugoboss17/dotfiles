@@ -405,3 +405,11 @@ Use `references/phaser-patterns.md` for all patterns and examples.
 | `references/python-patterns.md` | ruff/mypy config, pytest patterns, Python modernisation |
 | `references/design-patterns.md` | GoF design patterns catalog with Laravel/TS/Go examples and SOLID principles |
 | `references/phaser-patterns.md` | Phaser 3.90+ scene patterns, object pooling, asset management, JS→TS migration |
+
+---
+
+## Code Style
+
+- Write human-readable code
+- No comments unless absolutely necessary — code should be self-explanatory through naming and structure
+- Never commit unless the user explicitly asks

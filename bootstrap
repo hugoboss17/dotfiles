@@ -28,6 +28,11 @@ else
     OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
 fi
 
+export WSL=false
+if [[ "$OS" == "ubuntu" ]] && (grep -qi microsoft /proc/version 2>/dev/null || [ -n "${WSL_DISTRO_NAME:-}" ]); then
+    WSL=true
+fi
+
 TYPE="$1"
 if ! echo "$ALLOWED_TYPES" | grep -qw "$TYPE"; then
     error "Unknown type '$TYPE'. Allowed: $ALLOWED_TYPES"

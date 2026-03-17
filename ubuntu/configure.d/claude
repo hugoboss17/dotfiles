@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
+CLAUDE_SKILLS_DIR="$HOME/.claude/skills"
+
+mkdir -p "$CLAUDE_SKILLS_DIR"
+
+for link in "$CLAUDE_SKILLS_DIR"/*/; do
+    if [ -L "${link%/}" ] && [ ! -e "${link%/}" ]; then
+        echo "Removing stale skill link: $(basename "${link%/}")"
+        rm "${link%/}"
+    fi
+done
+
+for skill_dir in "$DOTFILES_DIR/.claude/skills/"*/; do
+    skill_name="$(basename "$skill_dir")"
+    target="$CLAUDE_SKILLS_DIR/$skill_name"
+    ln -sfn "$skill_dir" "$target"
+    echo "Linking skill: $skill_name"
+done

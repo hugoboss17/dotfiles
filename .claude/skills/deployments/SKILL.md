@@ -200,3 +200,11 @@ Design a rollback strategy for a given deployment approach.
 | `references/terraform-patterns.md` | Terraform module structure, tagging conventions, state config |
 | `references/github-actions.md` | Workflow templates for Laravel + Vue/TS CI/CD |
 | `references/docker-patterns.md` | Multi-stage Dockerfile patterns, compose setup |
+
+---
+
+## Code Style
+
+- Write human-readable code
+- No comments unless absolutely necessary — code should be self-explanatory through naming and structure
+- Never commit unless the user explicitly asks

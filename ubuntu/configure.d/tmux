@@ -3,15 +3,21 @@ set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
 
-mkdir -p "$HOME/.config/tmux/plugins"
+TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+
+mkdir -p "$HOME/.config/tmux"
 
 echo "Linking tmux config"
 ln -sf "$DOTFILES_DIR/config/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
 
-echo "Linking tpm"
-ln -sfn /opt/homebrew/opt/tpm/share/tpm "$HOME/.config/tmux/plugins/tpm"
+if [ ! -d "$TPM_DIR" ]; then
+    echo "Cloning tpm"
+    git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+else
+    echo "tpm already installed, skipping"
+fi
 
 echo "Installing tmux plugins"
 tmux start-server
 tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.config/tmux/plugins/"
-/opt/homebrew/opt/tpm/share/tpm/bin/install_plugins
+"$TPM_DIR/bin/install_plugins"

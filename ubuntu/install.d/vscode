@@ -1,0 +1,20 @@
+#!/bin/bash
+set -euo pipefail
+
+if [ "${WSL:-false}" = "true" ]; then
+    echo "WSL detected — install VS Code on Windows and use the Remote WSL extension"
+    exit 0
+fi
+
+if command -v code > /dev/null 2>&1; then
+    echo "VS Code already installed, skipping"
+    exit 0
+fi
+
+echo "Installing VS Code.."
+curl -fsSL https://packages.microsoft.com/keys/microsoft.asc \
+    | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/code stable main" \
+    | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y code

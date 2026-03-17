@@ -1,0 +1,20 @@
+#!/bin/bash
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
+
+CRON_JOB="0 9 * * 6 cd $DOTFILES_DIR && ./bootstrap update >> /tmp/dotfiles-update.log 2>&1"
+
+if crontab -l 2>/dev/null | grep -qF "dotfiles"; then
+    echo "Weekly update already in crontab, skipping"
+else
+    (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
+    echo "Weekly update scheduled via cron (Saturdays at 9:00 AM)"
+fi
+
+if [ "${WSL:-false}" = "true" ]; then
+    echo ""
+    echo "WSL note: cron does not start automatically. To enable it, add to /etc/wsl.conf:"
+    echo "  [boot]"
+    echo "  command = service cron start"
+fi
